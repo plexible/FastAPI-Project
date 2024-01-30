@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<script>
+    function previewImage() {
+        var preview = document.getElementById('image-preview');
+        var fileInput = document.getElementById('file');
+        var file = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.innerHTML = '<img src="' + reader.result + '" alt="Selected Image">';
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.innerHTML = '';
+        }
+    }
+</script>
+        <!-- Header Section -->
+<header class="w-full">
+    {% include "header.html" %}
+</header>
+<body>
+    <div class="container mx-auto p-4 flex flex-wrap">
+        <!-- Image Upload and Embedding Section -->
+        <section class="w-full md:w-1/2 p-4">
+            <form action="/embedding/" method="post" enctype="multipart/form-data" class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Image Upload and Embedding</h2>
+                <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
+                <input type="text" id="name" name="name" required
+                    class="mt-1 p-2 border rounded-md w-full">
+
+                <label for="surname" class="block mt-4 text-sm font-medium text-gray-600">Surname:</label>
+                <input type="text" id="surname" name="surname" required
+                    class="mt-1 p-2 border rounded-md w-full">
+
+                <label for="tcno" class="block mt-4 text-sm font-medium text-gray-600">TC No:</label>
+                <input type="text" id="tcno" name="tcno" required
+                    class="mt-1 p-2 border rounded-md w-full">
+
+                <label for="file" class="block mt-4 text-sm font-medium text-gray-600">Choose Image:</label>
+                <input type="file" id="file" name="file" accept="image/*" required
+                    class="mt-1 p-2 border rounded-md w-full" onchange="previewImage()">
+                <div id="image-preview" class="mt-4 text-green-600">
+                </div>
+                <div id="result-message" class="mt-4 text-green-600">{{ success_message }}</div>
+
+                <input type="submit" value="Upload and Embed"
+                    class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
+            </form>
+            <div id="image-preview" class="mt-4 text-green-600">
+            </div>
+        </section>
+
+        <!-- Download Embedded Image Section -->
+        <section class="w-full md:w-1/2 p-4">
+            <form action="/download-image/" method="get" class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+                <h2 class="text-2xl font-bold mb-4">Download Embedded Image</h2>
+                <div id="image" class="mt-4 text-green-600">
+                    {% if embedded_image %}
+                        <img src="{{ url_for('static', path=embedded_image) }}" alt="Embedded Image">
+                    {% endif %}
+                </div>
+                <input type="submit" value="Download Embedded Image"
+                    class="bg-green-500 text-white p-2 rounded-md cursor-pointer">
+            </form>
+        </section>
+
+    </div>
+</body>
+
+</html>
