@@ -12,8 +12,7 @@ cd FastAPI-Project
 ## Requirements
 Some requirements are needed for the project to work.
 ```console
-pip install fastapi uvicorn
-pip install fastapi-mail
+pip install -r requirements.txt
 ```
 
 ## Use
