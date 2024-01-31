@@ -58,12 +58,13 @@
         <!-- Download Embedded Image Section -->
         <section class="w-full md:w-1/2 p-4">
             <form action="/download-image/" method="get" class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
-                <h2 class="text-2xl font-bold mb-4">Download Embedded Image</h2>
-                <div id="image" class="mt-4 text-green-600">
+                <h2 class="text-2xl font-bold mb-4">Embedded Image</h2>
+                
                     {% if embedded_image %}
+                    <div id="image" class="mt-4 text-green-600 mb-12">
                         <img src="{{ url_for('static', path=embedded_image) }}" alt="Embedded Image">
+                    </div>
                     {% endif %}
-                </div>
                 <input type="submit" value="Download Embedded Image"
                     class="bg-green-500 text-white p-2 rounded-md cursor-pointer">
             </form>

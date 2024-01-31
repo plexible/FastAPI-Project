@@ -2,8 +2,10 @@ from fastapi import FastAPI, File, UploadFile, HTTPException, Request, Form
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from typing import Dict, Any
+from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
+from typing import Dict, Any, List
 from pathlib import Path
+from pydantic import EmailStr, BaseModel
 from EmbeddingExtractingPart import embedding_to_img, extracting_embedded_data
 from cv2 import imwrite
 import os
@@ -89,7 +91,52 @@ async def extracting(request: Request, file: UploadFile = File(...)):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
-        
+  
+# E-posta ayarları
+conf = ConnectionConfig(
+    MAIL_USERNAME="your_mail@gmail.com",
+    MAIL_PASSWORD="ctgh kvvr eckk awow",
+    MAIL_FROM="your_mail@gmail.com",
+    MAIL_PORT=587,
+    MAIL_SERVER="smtp.gmail.com",
+    MAIL_STARTTLS = True,
+    MAIL_SSL_TLS = False,
+    USE_CREDENTIALS = True,
+    VALIDATE_CERTS = True
+)
+
+mail = FastMail(conf)
+
+# E-posta gönderme endpoint'i
+@app.post("/send-email/")
+async def send_email(
+    request: Request,
+    name: str = Form(...),
+    email: str = Form(...),
+    phone: str = Form(...),
+    message: str = Form(...)
+):    
+    message_ = MessageSchema(
+        subject=f"ContactMe Form {name}",
+        recipients=["your_mail@gmail.com"],
+        body=f"Name: {name}\nPhone: {phone}\nEmail: {email}\nMessage: {message}",
+        subtype="html"
+    )
+
+    try:
+        await mail.send_message(message_)
+        success_message = "Sent Successfully"
+        return templates.TemplateResponse(
+            "contact-me.html",
+            {"request": request, "success_message": success_message}
+        )
+    except Exception as e:
+        error_message = f"Transaction could not be completed"
+        return templates.TemplateResponse(
+            "contact-me.html",
+            {"request": request, "success_message": error_message}
+        )
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)

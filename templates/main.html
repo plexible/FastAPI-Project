@@ -4,6 +4,25 @@
     {% include "header.html" %}
 </header>
 <body>
+    <div class="container my-24 mx-auto md:px-6">
+      <!-- Section: Design Block -->
+      <section class="background-radial-gradient">
+              <div class="mb-12 lg:mt-0 sm:w-1/2 p-5 mx-auto">
+                <h1 class="mb-12 text-5xl font-bold tracking-tight text-[hsl(218,81%,95%)] md:text-6xl xl:text-7xl">
+                  Welcome to <br /><span class="text-[hsl(218,81%,75%)]">My Personal Web Page?</span>
+                </h1>
+                <p class="text-lg text-[hsl(218,81%,95%)]">
+                  I developed this website using FastAPI with the dual purpose of gaining a better understanding of FastAPI usage and enhancing my skills. 
+                  Throughout this process, I share the projects I've created, enabling users to interact with them through user-friendly interfaces.
+                </p>
+                <p>
+                  My goal is not only to grasp FastAPI's functionality but also to foster an environment where projects can be accessed and 
+                  utilized by users through intuitive interfaces. This serves as a valuable learning experience for both myself and the users engaging with the projects.
+                </p>
+              </div>
+      </section>
+    </div>
+    
     <div class="container mx-auto p-4">
         <section class="mb-32">
             <style>
@@ -85,5 +104,8 @@
           </section>
     </div>
 </body>
+<footer class="w-full">
+  {% include "footer.html" %}
+</footer>
 </html>
 
