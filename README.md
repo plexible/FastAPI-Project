@@ -13,6 +13,7 @@ cd FastAPI-Project
 Some requirements are needed for the project to work.
 ```console
 pip install -r requirements.txt
+curl -o EmbeddingExtractingPart.py -k https://raw.githubusercontent.com/plexible/Hide-Encrypted-Information-Into-GrayScale-Image/main/EmbeddingExtractingPart.py
 ```
 
 ## Use
