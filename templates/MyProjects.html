@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html class="h-full">
+    <head>
+        <!-- Include Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Page Title</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <section class="dark:bg-gray-900">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+            <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+                <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">My Projects</h2>
+                <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Welcome to my web portfolio! Here, I showcase a variety of web development projects 
+                    that highlight my skills and creativity.</p>
+            </div> 
+            <div class="grid gap-8 lg:grid-cols-1">
+                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">Secure Data Transfer and Information Hiding Project</a></h2>
+                    <p class="mb-5 font-light text-gray-500 dark:text-gray-400">Project details.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img class="w-7 h-7 rounded-full" src="/static/assets/Images/plexible.jpg" alt="Jese Leos avatar" />
+                            <span class="font-medium dark:text-white">
+                                Plexible
+                            </span>
+                        </div>
+                        <a href="/Secure-Data-Transfer-and-Information-Hiding/" class="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 text-indigo-600 text-white">
+                            <span class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+                            <span class="relative text-indigo-600 transition duration-300 group-hover:text-white ease">Use Project</span>
+                        </a>
+                    </div>
+                </article> 
+                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">Bitcoin Price Prediction</a></h2>
+                    <p class="mb-5 font-light text-gray-500 dark:text-gray-400">Project Details</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img class="w-7 h-7 rounded-full" src="/static/assets/Images/plexible.jpg" alt="Jese Leos avatar" />
+                            <span class="font-medium dark:text-white">
+                                Plexible
+                            </span>
+                        </div>
+                        <a href="#_" class="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 text-indigo-600 text-white">
+                            <span class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+                            <span class="relative text-indigo-600 transition duration-300 group-hover:text-white ease">Use Project</span>
+                        </a>
+                    </div>
+                </article> 
+                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">Loan Approval Prediction</a></h2>
+                    <p class="mb-5 font-light text-gray-500 dark:text-gray-400">Project Details</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-4">
+                            <img class="w-7 h-7 rounded-full" src="/static/assets/Images/plexible.jpg" alt="Jese Leos avatar" />
+                            <span class="font-medium dark:text-white">
+                                Plexible
+                            </span>
+                        </div>
+                        <a href="#_" class="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 text-indigo-600 text-white">
+                            <span class="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+                            <span class="relative text-indigo-600 transition duration-300 group-hover:text-white ease">Use Project</span>
+                        </a>
+                    </div>
+                </article> 
+            </div>  
+        </div>
+      </section>
+      {% include "footer.html" %}
+</body>
+
+</html>
+

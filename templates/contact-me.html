@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html class="h-full">
-<header class="w-full">
-    {% include "header.html" %}
-</header>
+   <head>
+      <!-- Include Tailwind CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Your Page Title</title>
+</head>
 <body>
-<!-- ====== Contact Section Start -->
+  {% include "header.html" %}
 <section
    class="relative z-10 overflow-hidden dark:bg-dark py-20 lg:py-[120px]"
    >
@@ -153,6 +157,6 @@
       </div>
    </div>
 </section>
-<!-- ====== Contact Section End -->
+{% include "footer.html" %}
 </body>
 </html>

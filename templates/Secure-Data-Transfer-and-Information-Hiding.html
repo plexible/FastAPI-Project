@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="h-full">
+
+<head>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/static/scripts/script.js"></script>
+</head>
+        <!-- Header Section -->
+<body>
+    {% include "header.html" %}
+    
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        <div class="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
+            <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Secure Data Transfer and Information Hiding</h2>
+            <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Secure Data Transfer and Information Hiding</p>
+        </div> 
+        <div class="grid gap-8 lg:grid-cols-1">
+            <div class="p-6 bg-sky-50 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 w-full mx-auto p-4 flex flex-wrap bg-green-50">
+                <div class="container my-12 mx-auto md:px-6">
+                    <h2 class="text-2xl font-bold mb-4">Embedding Informatin in Gray Image</h2>
+                </div>
+                <!-- Image Upload and Embedding Section -->
+                <section class="w-full md:w-1/2 p-4">
+                    <form id="embedForm" target="embedTarget" action="/Secure-Data-Transfer-and-Information-Hiding/embedding/" method="post" enctype="multipart/form-data" class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+                        <h2 class="text-2xl font-bold mb-4">Image Upload and Embedding</h2>
+                        <label for="name" class="block text-sm font-medium text-gray-600">Name:</label>
+                        <input type="text" id="name" name="name" required
+                            class="mt-1 p-2 border rounded-md w-full">
+
+                        <label for="surname" class="block mt-4 text-sm font-medium text-gray-600">Surname:</label>
+                        <input type="text" id="surname" name="surname" required
+                            class="mt-1 p-2 border rounded-md w-full">
+
+                        <label for="tcno" class="block mt-4 text-sm font-medium text-gray-600">TC No:</label>
+                        <input type="text" id="tcno" name="tcno" required
+                            class="mt-1 p-2 border rounded-md w-full">
+
+                        <label for="file" class="block mt-4 text-sm font-medium text-gray-600">Choose Image:</label>
+                        <input type="file" id="file-embedding" name="file" accept="image/*" required
+                            class="mt-1 p-2 border rounded-md w-full" onchange="previewImage('image-preview-embedding', 'file-embedding')">
+                        <div id="image-preview-embedding" class="mt-4 text-green-600">
+                        </div>
+                        <div id="result-message-label" class="mt-4 text-green-600"><span id="result-message-output"></span></div>
+                        <input type="submit" value="Embedding" class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
+                    </form>
+                </section>
+
+                <!-- Download Embedded Image Section -->
+                <section class="w-full md:w-1/2 p-4">
+                    <form action="/download-image/" method="get" class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+                        <h2 class="text-2xl font-bold mb-4">Embedded Image</h2>
+                        
+                        <div id="imageContainer" style="display: none;">
+                            <img id="embeddedImage" alt="Embedded Image">
+                        </div>
+                        <br>
+                        <input type="submit" value="Download Embedded Image"
+                            class="bg-green-500 text-white p-2 rounded-md cursor-pointer">
+                    </form>
+                </section>
+            </div>
+    
+        <div class="p-6 bg-sky-50 rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 w-full mx-auto p-4 flex flex-wrap bg-green-50">
+            <div class="container my-12 mx-auto md:px-6">
+                <h2 class="text-2xl font-bold mb-4">Extracting Informatin From Embedded Image</h2>
+            </div>
+            <!-- Image Upload and Embedding Section -->
+            <section class="w-full md:w-1/2 p-4">
+                <form id="uploadForm" target="uploadTarget" action="/Secure-Data-Transfer-and-Information-Hiding/extracting/" method="post" enctype="multipart/form-data" class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">Upload Embedded Image</h2>
+                    <label for="file" class="block mt-4 text-sm font-medium text-gray-600">Choose Image:</label>
+                    <input type="file" id="file-extracting" name="file" accept="image/*" required
+                        class="mt-1 p-2 border rounded-md w-full" onchange="previewImage('image-preview-extracting', 'file-extracting')">
+                    <div id="image-preview-extracting" class="mt-4 text-green-600">
+                    </div>
+                    <div id="result-message-label" class="mt-4 text-green-600"><span id="result-message-output"></span></div>
+                    <input type="submit" value="Extracting" class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
+                </form>
+                <iframe id="uploadTarget" name="uploadTarget" style="display:none;"></iframe>
+            </section>
+            <!-- Download Embedded Image Section -->
+            <section class="w-full md:w-1/2 p-4">
+                <div class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+                    <h2 class="text-2xl font-bold mb-4">Extracted Information</h2>
+                    <label for="name" id="name-label" class="block text-sm font-medium text-gray-600">Name: <span id="name-output"></span></label>
+                    <label for="surname" id="surname-label" class="block mt-4 text-sm font-medium text-gray-600">Surname: <span id="surname-output"></span></label>
+                    <label for="tcno" id="tcno-label" class="block mt-4 text-sm font-medium text-gray-600">TC No: <span id="tcno-output"></span></label>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+    <br>
+    {% include "footer.html" %}
+</body>
+
+</html>

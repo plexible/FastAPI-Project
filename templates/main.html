@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html class="h-full">
-<header class="w-full">
-    {% include "header.html" %}
-</header>
+<head>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+</head>
 <body>
+  {% include "header.html" %}
     <div class="container my-24 mx-auto md:px-6">
       <!-- Section: Design Block -->
       <section class="background-radial-gradient">
@@ -38,14 +43,16 @@
                 data-te-ripple-init
                 data-te-ripple-color="light">
                 <img
-                  src="/static/assets/Images/btc-prediction.webp"
+                  src="/static/assets/Images/cryptography.webp"
                   class="w-full align-middle transition duration-300 ease-linear" />
-                <a href="#!">
+                <a href="/Secure-Data-Transfer-and-Information-Hiding/">
                   <div
                     class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsla(0,0%,0%,0.4)] bg-fixed">
                     <div class="flex h-full items-end justify-start">
                       <div class="m-6 text-white">
-                        <h5 class="mb-3 text-lg font-bold">Bitcoin Price Prediction</h5>
+                        <h5 class="mb-3 text-lg font-bold">
+                            Secure Data Transfer and Information Hiding Project
+                        </h5>
                       </div>
                     </div>
                   </div>
@@ -59,16 +66,14 @@
                 data-te-ripple-init
                 data-te-ripple-color="light">
                 <img
-                  src="/static/assets/Images/cryptography.webp"
+                  src="/static/assets/Images/btc-prediction.webp"
                   class="w-full align-middle transition duration-300 ease-linear" />
                 <a href="#!">
                   <div
                     class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsla(0,0%,0%,0.4)] bg-fixed">
                     <div class="flex h-full items-end justify-start">
                       <div class="m-6 text-white">
-                        <h5 class="mb-3 text-lg font-bold">
-                            Secure Data Transfer and Information Hiding Project
-                        </h5>
+                        <h5 class="mb-3 text-lg font-bold">Bitcoin Price Prediction</h5>
                       </div>
                     </div>
                   </div>
@@ -97,15 +102,9 @@
                     class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed transition duration-300 ease-in-out hover:bg-[hsla(0,0%,99%,0.15)]"></div>
                 </a>
               </div>
-      
-      
-      
-
           </section>
     </div>
-</body>
-<footer class="w-full">
   {% include "footer.html" %}
-</footer>
+</body>
 </html>
 

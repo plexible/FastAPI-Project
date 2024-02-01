@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html class="h-full">
-<header class="w-full">
-    {% include "header.html" %}
-</header>
-<script>
-    function previewImage() {
-        var preview = document.getElementById('image-preview');
-        var fileInput = document.getElementById('file');
-        var file = fileInput.files[0];
-        var reader = new FileReader();
+    <head>
+        <!-- Include Tailwind CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Page Title</title>
 
-        reader.onloadend = function () {
-            preview.innerHTML = '<img src="' + reader.result + '" alt="Selected Image">';
-        }
+    <script>
+        function previewImage() {
+            var preview = document.getElementById('image-preview');
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0];
+            var reader = new FileReader();
 
-        if (file) {
-            reader.readAsDataURL(file);
-        } else {
-            preview.innerHTML = '';
+            reader.onloadend = function () {
+                preview.innerHTML = '<img src="' + reader.result + '" alt="Selected Image">';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '';
+            }
         }
-    }
-</script>
+    </script>
+</head>
 <body>
+    {% include "header.html" %}
     <div class="container mx-auto p-4 flex flex-wrap">
         <!-- Image Upload and Embedding Section -->
         <section class="w-full md:w-1/2 p-4">
@@ -48,6 +54,7 @@
         </section>
 
     </div>
+    {% include "footer.html" %}
 </body>
 
 </html>

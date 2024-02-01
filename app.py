@@ -1,5 +1,5 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException, Request, Form
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
@@ -19,17 +19,17 @@ async def read_item(request: Request):
 @app.get("/about-me/", response_class=HTMLResponse)
 async def about_us(request: Request):
     return templates.TemplateResponse("about-me.html", {"request": request})
+@app.get("/MyProjects/", response_class=HTMLResponse)
+async def about_us(request: Request):
+    return templates.TemplateResponse("MyProjects.html", {"request": request})
 @app.get("/contact-me/", response_class=HTMLResponse)
 async def about_us(request: Request):
     return templates.TemplateResponse("contact-me.html", {"request": request})
-@app.get("/embedding/", response_class=HTMLResponse)
+@app.get("/Secure-Data-Transfer-and-Information-Hiding/", response_class=HTMLResponse)
 async def embedding_page(request: Request):
-    return templates.TemplateResponse("embedding-page.html", {"request": request})
-@app.get("/extracting/", response_class=HTMLResponse)
-async def extracting_page(request: Request):
-    return templates.TemplateResponse("extracting-page.html", {"request": request})
+    return templates.TemplateResponse("Secure-Data-Transfer-and-Information-Hiding.html", {"request": request})
 
-@app.post("/embedding/")
+@app.post("/Secure-Data-Transfer-and-Information-Hiding/embedding/")
 async def upload_image(
     request: Request,
     file: UploadFile = File(...),
@@ -48,22 +48,25 @@ async def upload_image(
             image_file.write(file.file.read())
             
         new_img = embedding_to_img(image_path, info_dict)
+        
         # Provide the path to the embedded image
-        image_path = os.path.join("images", file.filename)
         new_file_name = os.path.splitext(os.path.basename(image_path))[0]
         embedded_image_path = os.path.join("uploads", f"embedded_{new_file_name}.png")
-        embedded_img = os.path.join("static/uploads", f"embedded_{new_file_name}.png")
-        uploaded_image_path = embedded_image_path
+        embedded_img = os.path.join("static", "uploads", f"embedded_{new_file_name}.png")
+        uploaded_image_path = embedded_img
         print(uploaded_image_path)
         imwrite(embedded_img, new_img)
+        
         # Set success message
         success_message = "Embedding completed"
-        return templates.TemplateResponse(
-            "embedding-page.html",
-            {"request": request, "success_message": success_message, "embedded_image": uploaded_image_path}
-        )
+        if embedded_image_path:
+            success_message = "Extracting completed"
+            return JSONResponse(content={"success_message": success_message, "embedded_image": embedded_image_path})
+        else:
+            raise HTTPException(status_code=400, detail="Failed to extract information from the image")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
 
 
 @app.get("/download-image/")
@@ -74,7 +77,7 @@ async def download_image():
     # Endpoint for downloading the embedded image
     return FileResponse(uploaded_image_path, media_type="application/octet-stream", filename="embedded_image.png")
 
-@app.post("/extracting/")
+@app.post("/Secure-Data-Transfer-and-Information-Hiding/extracting/")
 async def extracting(request: Request, file: UploadFile = File(...)):
     try:
         # Save the uploaded image
@@ -84,18 +87,19 @@ async def extracting(request: Request, file: UploadFile = File(...)):
             image_file.write(file.file.read())
         extracted_info = extracting_embedded_data(image_path)
         success_message = "Extracting completed"
-        return templates.TemplateResponse(
-            "extracting-page.html",
-            {"request": request, "success_message": success_message, "name": extracted_info["name"], 
-                "surname": extracted_info["surname"], "tcno": extracted_info["tcno"]}
-        )
+        if extracted_info:
+            success_message = "Extracting completed"
+            return JSONResponse(content={ "success_message": success_message, **extracted_info})
+        else:
+            raise HTTPException(status_code=400, detail="Failed to extract information from the image")
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
   
 # E-posta ayarları
 conf = ConnectionConfig(
     MAIL_USERNAME="your_mail@gmail.com",
-    MAIL_PASSWORD="ctgh kvvr eckk awow",
+    MAIL_PASSWORD="yourapppassword",
     MAIL_FROM="your_mail@gmail.com",
     MAIL_PORT=587,
     MAIL_SERVER="smtp.gmail.com",

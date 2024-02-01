@@ -193,8 +193,6 @@ def embedding_part(quarters, binary_list, img, positions):
 
 #All encryption and embedding operations.
 def embedding_to_img(image_path, info):
-    print("info")
-    print(info)
     img = imread(image_path)
     height, width, _ = img.shape
     quarters = find_quarters(img, height, width)
