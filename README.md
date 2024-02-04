@@ -18,6 +18,7 @@ pip install -r requirements.txt
 
 2. The EmbeddingExtractingPart.py file should be downloaded from the GitHub repository. This file is the python file required for the Secure Data Transfer and Information Hiding Project:
 ```console
+mkdir project_documents
 cd project_documents
 curl -o EmbeddingExtractingPart.py -k https://raw.githubusercontent.com/plexible/Hide-Encrypted-Information-Into-GrayScale-Image/main/EmbeddingExtractingPart.py
 ```
