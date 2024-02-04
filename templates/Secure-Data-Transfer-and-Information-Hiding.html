@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="/static/scripts/script.js"></script>
+    <script src="/static/scripts/my-projects-script.js"></script>
 </head>
         <!-- Header Section -->
 <body>
@@ -47,7 +47,7 @@
                             class="mt-1 p-2 border rounded-md w-full" onchange="previewImage('image-preview-embedding', 'file-embedding')">
                         <div id="image-preview-embedding" class="mt-4 text-green-600">
                         </div>
-                        <div id="result-message-label" class="mt-4 text-green-600"><span id="result-message-output"></span></div>
+                        <div id="result-message-label" class="mt-4 text-green-600"><span id="result-message-embedding"></span></div>
                         <input type="submit" value="Embedding" class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
                     </form>
                 </section>
@@ -80,10 +80,9 @@
                         class="mt-1 p-2 border rounded-md w-full" onchange="previewImage('image-preview-extracting', 'file-extracting')">
                     <div id="image-preview-extracting" class="mt-4 text-green-600">
                     </div>
-                    <div id="result-message-label" class="mt-4 text-green-600"><span id="result-message-output"></span></div>
+                    <div id="result-message-label-extracting" class="mt-4 text-green-600"><span id="result-message-extracting"></span></div>
                     <input type="submit" value="Extracting" class="mt-4 bg-blue-500 text-white p-2 rounded-md cursor-pointer">
                 </form>
-                <iframe id="uploadTarget" name="uploadTarget" style="display:none;"></iframe>
             </section>
             <!-- Download Embedded Image Section -->
             <section class="w-full md:w-1/2 p-4">

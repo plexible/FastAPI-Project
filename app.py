@@ -6,9 +6,11 @@ from fastapi_mail import FastMail, MessageSchema,ConnectionConfig
 from typing import Dict, Any, List
 from pathlib import Path
 from pydantic import EmailStr, BaseModel
-from EmbeddingExtractingPart import embedding_to_img, extracting_embedded_data
+from projects_documents.EmbeddingExtractingPart import embedding_to_img, extracting_embedded_data
 from cv2 import imwrite
 import os
+from joblib import load
+import pandas
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -17,17 +19,21 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def read_item(request: Request):
     return templates.TemplateResponse("main.html", {"request": request})
 @app.get("/about-me/", response_class=HTMLResponse)
-async def about_us(request: Request):
+async def about_me(request: Request):
     return templates.TemplateResponse("about-me.html", {"request": request})
-@app.get("/MyProjects/", response_class=HTMLResponse)
-async def about_us(request: Request):
-    return templates.TemplateResponse("MyProjects.html", {"request": request})
 @app.get("/contact-me/", response_class=HTMLResponse)
-async def about_us(request: Request):
+async def contact_me(request: Request):
     return templates.TemplateResponse("contact-me.html", {"request": request})
+@app.get("/my-projects/", response_class=HTMLResponse)
+async def my_prjects(request: Request):
+    return templates.TemplateResponse("my-projects.html", {"request": request})
 @app.get("/Secure-Data-Transfer-and-Information-Hiding/", response_class=HTMLResponse)
 async def embedding_page(request: Request):
     return templates.TemplateResponse("Secure-Data-Transfer-and-Information-Hiding.html", {"request": request})
+@app.get("/loan-approval-prediction/", response_class=HTMLResponse)
+async def loan_approval_prediction(request: Request):
+    return templates.TemplateResponse("loan-approval-prediction.html", {"request": request})
+
 
 @app.post("/Secure-Data-Transfer-and-Information-Hiding/embedding/")
 async def upload_image(
@@ -57,10 +63,8 @@ async def upload_image(
         print(uploaded_image_path)
         imwrite(embedded_img, new_img)
         
-        # Set success message
-        success_message = "Embedding completed"
         if embedded_image_path:
-            success_message = "Extracting completed"
+            success_message = "Embedding completed"
             return JSONResponse(content={"success_message": success_message, "embedded_image": embedded_image_path})
         else:
             raise HTTPException(status_code=400, detail="Failed to extract information from the image")
@@ -86,7 +90,6 @@ async def extracting(request: Request, file: UploadFile = File(...)):
         with open(image_path, "wb") as image_file:
             image_file.write(file.file.read())
         extracted_info = extracting_embedded_data(image_path)
-        success_message = "Extracting completed"
         if extracted_info:
             success_message = "Extracting completed"
             return JSONResponse(content={ "success_message": success_message, **extracted_info})
@@ -95,6 +98,46 @@ async def extracting(request: Request, file: UploadFile = File(...)):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+    
+def preprocess_user_input(user_input, scaler):
+    scaled_input = scaler.transform([user_input])
+    return scaled_input
+
+@app.post("/loan-approval-prediction/")
+async def prediction(request: Request, 
+    current_loan_amount: str = Form(...),
+    term: str = Form(...),
+    credit_score: str = Form(...),
+    annual_income: str = Form(...),
+    home_ownership: str = Form(...),
+    monthly_debt: str = Form(...),
+    years_of_credit_history: str = Form(...),
+    number_of_open_accounts: str = Form(...)):
+    try:
+        input_data = [
+            float(current_loan_amount),
+            int(term),
+            float(credit_score),
+            float(annual_income),
+            int(home_ownership),
+            float(monthly_debt),
+            float(years_of_credit_history),
+            float(number_of_open_accounts)
+        ]
+        loaded_model = load('projects_documents/random_forest_model.joblib')
+        scaler = load('projects_documents/scaler.joblib')
+        scaled_input = preprocess_user_input(input_data, scaler)
+        prediction = loaded_model.predict(scaled_input)
+        prediction_result = prediction[0]
+        if prediction_result != None:
+            prediction_result = "Not approved" if prediction_result == 0 else "Approved"
+            success_message = "Prediction completed"
+            return JSONResponse(content={ "success_message": success_message, "prediction": prediction_result})
+        else:
+            raise HTTPException(status_code=400, detail="Failed to predict")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
   
 # E-posta ayarları
 conf = ConnectionConfig(

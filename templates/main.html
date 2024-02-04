@@ -9,14 +9,14 @@
 </head>
 <body>
   {% include "header.html" %}
-    <div class="container my-24 mx-auto md:px-6">
+    <div class="container my-12 mx-auto md:px-6">
       <!-- Section: Design Block -->
       <section class="background-radial-gradient">
               <div class="mb-12 lg:mt-0 sm:w-1/2 p-5 mx-auto">
-                <h1 class="mb-12 text-5xl font-bold tracking-tight text-[hsl(218,81%,95%)] md:text-6xl xl:text-7xl">
+                <h1 class="mb-12 text-5xl font-bold tracking-tight text-[hsl(250,50%,10%)] md:text-6xl xl:text-7xl">
                   Welcome to <br /><span class="text-[hsl(218,81%,75%)]">My Personal Web Page?</span>
                 </h1>
-                <p class="text-lg text-[hsl(218,81%,95%)]">
+                <p class="text-lg ">
                   I developed this website using FastAPI with the dual purpose of gaining a better understanding of FastAPI usage and enhancing my skills. 
                   Throughout this process, I share the projects I've created, enabling users to interact with them through user-friendly interfaces.
                 </p>
@@ -60,7 +60,28 @@
                     class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed transition duration-300 ease-in-out hover:bg-[hsla(0,0%,99%,0.15)]"></div>
                 </a>
               </div>
-      
+
+              <div
+              class="zoom relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
+              data-te-ripple-init
+              data-te-ripple-color="light">
+              <img
+                src="/static/assets/Images/loan-prediction.png"
+                class="w-full align-middle transition duration-300 ease-linear" />
+              <a href="/loan-approval-prediction/">
+                <div
+                  class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsla(0,0%,0%,0.4)] bg-fixed">
+                  <div class="flex h-full items-end justify-start">
+                    <div class="m-6 text-white">
+                      <h5 class="mb-3 text-lg font-bold">Loan Approval Prediction</h5>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed transition duration-300 ease-in-out hover:bg-[hsla(0,0%,99%,0.15)]"></div>
+              </a>
+            </div>
+
               <div
                 class="zoom relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                 data-te-ripple-init
@@ -82,26 +103,7 @@
                 </a>
               </div>
       
-              <div
-                class="zoom relative overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
-                data-te-ripple-init
-                data-te-ripple-color="light">
-                <img
-                  src="/static/assets/Images/loan-prediction.png"
-                  class="w-full align-middle transition duration-300 ease-linear" />
-                <a href="#!">
-                  <div
-                    class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-[hsla(0,0%,0%,0.4)] bg-fixed">
-                    <div class="flex h-full items-end justify-start">
-                      <div class="m-6 text-white">
-                        <h5 class="mb-3 text-lg font-bold">Loan Approval Prediction</h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed transition duration-300 ease-in-out hover:bg-[hsla(0,0%,99%,0.15)]"></div>
-                </a>
-              </div>
+        
           </section>
     </div>
   {% include "footer.html" %}
