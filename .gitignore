@@ -3,5 +3,12 @@ __pycache__/app.cpython-312.pyc
 EmbeddingExtractingPart.py
 random_forest_model.joblib
 projects_documents/scaler.joblib
-projects_documents/__pycache__/EmbeddingExtractingPart.cpython-312.pyc
 __pycache__/EmbeddingExtractingPart.cpython-312.pyc
+__pycache__/app.cpython-312.pyc
+projects_documents/__pycache__/EmbeddingExtractingPart.cpython-312.pyc
+routes/__pycache__/__init__.cpython-312.pyc
+routes/__pycache__/about_me.cpython-312.pyc
+routes/__pycache__/contact_me.cpython-312.pyc
+routes/__pycache__/loan_approval_prediction.cpython-312.pyc
+routes/__pycache__/my_projects.cpython-312.pyc
+routes/__pycache__/secure_data_transfer_and_information_hidding.cpython-312.pyc
